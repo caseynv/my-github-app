@@ -6,9 +6,10 @@ class Form extends Component{
     handleSubmit = async (event) => {
         event.preventDefault();
         const resp = await axios.get(`https://api.github.com/users/${this.state.userName}`)
-        console.log(resp.data);
+        this.props.onSubmit(resp.data);
     }; catch (error){
-        console.log(error)
+        this.props.onSubmit(error)
+        this.setState({ userName: '' })
     };
 
     render(){
@@ -18,7 +19,7 @@ class Form extends Component{
                     <input type="text" 
                     placeholder='Github Username' 
                     value={ this.state.userName } 
-                    onChange={ event => this.setState ({ userName: event.target.value }) }
+                    onChange={ event => this.setState({ userName: event.target.value }) }
                     required/>
                     <button>Add card</button>
                 </form>
