@@ -13,7 +13,7 @@ const testData = [
 
 class App extends React.Component{
   state = {
-      profiles: testData,
+    profiles: testData,
   }
   render() {
     return (
